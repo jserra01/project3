@@ -95,5 +95,5 @@ def metadata(name):
     return jsonify(country_data)
 
 if __name__ == "__main__":
-    app.run(port=8000, debug=True)
+    app.run(debug=True)
 
