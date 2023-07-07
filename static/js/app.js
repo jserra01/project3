@@ -4,7 +4,7 @@ const apiCountryMetaData = ("/api/v1.0/countrymetadata/");
 
 //Fetch json data: add Countries to drop down list
 d3.json(apiCountries).then(function(data) {
-    const country_names = data.country;
+    let country_names = data;
     country_names.sort((a, b) => a - b);
     //console.log("Countries: ", country_names);
 
@@ -20,11 +20,11 @@ d3.json(apiCountries).then(function(data) {
         select.appendChild(option);
     }
 
-})
+});
 
 //Startup country
 function init() {
-    getData("INDIA");
+    getData("AFGHANISTAN");
 }
 
 // On change to the DOM , call getData()
@@ -39,26 +39,27 @@ function getData(subject) {
 
     //Fetch json data
     d3.json(apiCountryMetaData + subject).then(function(data) {
-        filteredMetaData = data.filter(function(d) {
-            return d.country === parseInt(subject);
-        })
-
-        //console.log(filteredMetaData);
+        let metaData = data;
+        
+        //console.log(subject);
+        //console.log(apiCountryMetaData);
+        //console.log(apiCountryMetaData + subject);
+        //console.log(metaData);
 
         //Capture metadata
-        countryName = filteredMetaData[0].country;
-        countryArea = filteredMetaData[0].area;
-        countryCCA2 = filteredMetaData[0].cca2;
-        countryCCA3 = filteredMetaData[0].cca3;
-        countryGrowthRate = filteredMetaData[0].growthRate;
-        countryDensity = filteredMetaData[0].density;
-        countrypop1980 = filteredMetaData[0].pop1980;
-        countrypop2000 = filteredMetaData[0].pop2000;
-        countrypop2010 = filteredMetaData[0].pop2010;
-        countrypop2022 = filteredMetaData[0].pop2022;
-        countrypop2023 = filteredMetaData[0].pop2023;
-        countrypop2030 = filteredMetaData[0].pop2030;
-        countrypop2050 = filteredMetaData[0].pop2050;
+        countryName = metaData[0].country;
+        countryArea = metaData[0].area;
+        countryCCA2 = metaData[0].cca2;
+        countryCCA3 = metaData[0].cca3;
+        countryGrowthRate = metaData[0].growthRate;
+        countryDensity = metaData[0].density;
+        countrypop1980 = metaData[0].pop1980;
+        countrypop2000 = metaData[0].pop2000;
+        countrypop2010 = metaData[0].pop2010;
+        countrypop2022 = metaData[0].pop2022;
+        countrypop2023 = metaData[0].pop2023;
+        countrypop2030 = metaData[0].pop2030;
+        countrypop2050 = metaData[0].pop2050;
     
         d3.select("#sample-metadata").text("Country: " + countryName);
         d3.select("#sample-metadata").append("p").text("Area: " + countryArea).style("margin", "0");

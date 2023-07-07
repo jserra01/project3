@@ -7,7 +7,7 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 
 
 #################################################
@@ -36,11 +36,7 @@ app = Flask(__name__)
 @app.route('/')
 def welcome():
     """List all available routes"""
-    return(
-        f'Availabe routes:<br>'
-        f'/api/v1.0/countries<br>'
-        f'/api/v1.0/countrymetadata/<country>'
-    )
+    return render_template('index.html')
 
 @app.route('/api/v1.0/countries')
 def countries():
@@ -99,5 +95,5 @@ def metadata(name):
     return jsonify(country_data)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(port=8000, debug=True)
 
