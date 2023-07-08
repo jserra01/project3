@@ -1,6 +1,6 @@
 //Get data endpoints
-const apiCountries = ("/api/v1.0/countries");
-const apiCountryMetaData = ("/api/v1.0/countrymetadata/");
+const apiCountries = ("http://localhost:8000/api/v1.0/countries");
+const apiCountryMetaData = ("http://localhost:8000/api/v1.0/countrymetadata/");
 
 //Fetch json data: add Countries to drop down list
 d3.json(apiCountries).then(function(data) {
